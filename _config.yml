@@ -1,16 +1,89 @@
-remote_theme: "mmistakes/minimal-mistakes@4.19.1
-minimal_mistakes_skin: "neon"
+title: Cyber-F0x Blog
+email:
+description: >- # this means to ignore newlines until "baseurl:"
+  My blog, will cover my ventures in to exploit development pentesting.
+twitter_username: F0xCyber
+github_username: Cyber-F0x
+minimal_mistakes_skin: neon
+search: true
 
-local: en-GB
+# Build settings
+markdown: kramdown
+remote_theme: mmistakes/minimal-mistakes
+# Outputting
+permalink: /:categories/:title/
+paginate: 5 # amount of posts to show
+paginate_path: /page:num/
+timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
 
-title: "Cyber-F0x Blog"
+include:
+  - _pages
 
-name: Cyber-F0x
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+# exclude:
+#   - Gemfile
+#   - Gemfile.lock
+#   - node_modules
+#   - vendor/bundle/
+#   - vendor/cache/
+#   - vendor/gems/
+#   - vendor/ruby/
 
-description: Fox loving hackerman with taste for exploit develpoment
+# Plugins (previously gems:)
+plugins:
+  - jekyll-paginate
+  - jekyll-sitemap
+  - jekyll-gist
+  - jekyll-feed
+  - jemoji
+  - jekyll-include-cache
 
-avatar: https://avatars0.githubusercontent.com/u/34145491?s=400&u=a8e6f9f1afe55ecf0a8c4dc634e84d36b32bc8c1&v=4
+author:
+  name   : "Cyber-F0x"
+  avatar : "/assets/images/bio-photo"
+  bio    : "Fox loving hackerman with a taste for exploit dev."
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/"
+    
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/"
+    
+defaults:
+  # _posts
+  - scope:
+      path: ""
+      type: posts
+    values:
+      layout: single
+      author_profile: true
+      read_time: true
+      comments: true
+      share: true
+      related: true
+  # _pages
+  - scope:
+      path: "_pages"
+      type: pages
+    values:
+      layout: single
+      author_profile: true
 
-teaser: https://avatars0.githubusercontent.com/u/34145491?s=400&u=a8e6f9f1afe55ecf0a8c4dc634e84d36b32bc8c1&v=4
-
-breadcrumbs: true
+category_archive:
+  type: liquid
+  path: /categories/
+tag_archive:
+  type: liquid
+  path: /tags/

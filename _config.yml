@@ -43,7 +43,7 @@ plugins:
 author:
   name   : "Cyber-F0x"
   avatar : "/assets/images/bio-photo"
-  bio    : "Fox loving hackerman with a taste for exploit dev."
+  bio    : "Pentesting, exploit development and Python."
   links:
     - label: "Twitter"
       icon: "fab fa-fw fa-twitter-square"

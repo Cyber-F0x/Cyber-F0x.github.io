@@ -6,7 +6,7 @@ For this exercises I'll be using immunity debugger with mona.py, msfvenom, boofu
 
 Some pro immunity tips before we begin:
 
-Turn of the annoying message about terminating an active process. This will save some time when our exploit code breaks the target. To do this navigate to the Options menu -> Debugging Options -> Security Tab & untick "Warn when terminating active process". 
+To Turn off the annoying message about terminating an active process. This will save some time when our exploit code breaks the target. To do this navigate to the Options menu -> Debugging Options -> Security Tab & untick "Warn when terminating active process". 
 
 Keyboard shortcuts:
 

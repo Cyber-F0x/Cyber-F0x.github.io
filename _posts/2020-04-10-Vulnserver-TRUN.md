@@ -181,7 +181,7 @@ It was here where I ran in to my first stumbling block. During OSCP I did all of
 
 ---
 
-Side note, Python3 requires data sent over a socket to have an encoding, in Python2 this was kinda optional/
+Side note, Python3 requires data sent over a socket to have an encoding, in Python2 this was kinda optional.
 
 For example the following is valid Python2 code for confirming our exploit
 

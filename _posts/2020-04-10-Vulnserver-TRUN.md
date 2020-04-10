@@ -1,7 +1,3 @@
-## Vulnserver Miniseries - TRUN
-
----
-
 Hello World! With the goal of starting OSCE soon I wanted to brush up on my exploit development skills and hopefully provide some helpful tutorials for people taking OSCP
 
 I'd heard some good things about Vulnserver before ( https://github.com/stephenbradshaw/vulnserver) so i thought I'd dive straight in.
@@ -67,7 +63,7 @@ https://boofuzz.readthedocs.io/en/stable/user/static-protocol-definition.html
 
 For fuzzing I used the following template code:
 
-```Python
+```python
 #!/usr/bin/python3
 from boofuzz import *
 import argparse
@@ -111,7 +107,7 @@ This code can definitely be tidied up, the callback function could perform check
 
 After running this we can see that on the 3rd payload our process crashes:
 
-![image-20200408231515010](TRUN.assets/image-20200408231515010.png)
+![image-20200408231515010](/assets/images/vulnserver/TRUN/image-20200408231515010.png)
 
 Looking at our output we can see 5013 'A' Chars crashed the service:
 
@@ -213,7 +209,7 @@ No we have confirmed that 5000 bytes breaks the buffer we can move on to control
 
 As we can see in the immunity debugger output below, the EIP is being clobbered by AAAA (In hex 41 41 41 41).
 
-![image-20200410143314863](TRUN.assets/image-20200410143314863.png)
+![image-20200410143314863](/assets/images/vulnserver/TRUN/image-20200410143314863.png)
 
 To determine where this is within our buffer we need to create a unique byte string. There are a couple easy ways to do this. One of the easiest is to use the pattern_create script within msfvenom. Alternatively the cyclic method within the python pwntools library is another option.  I'll be sticking with the later in this case.
 
@@ -236,7 +232,7 @@ def make_payload():
 
 Once we kick this off, the application crashes again. Looking at the output we can see that the EIP was overwrittern with "61616275" shown below:
 
-![Selection_170](TRUN.assets/Selection_170.png)
+![Selection_170](/assets/images/vulnserver/TRUN/Selection_170.png)
 
 To find where this is in our buffer we can drop in to the REPL again and run cyclic find on our bytes:
 
@@ -260,7 +256,7 @@ def make_payload():
 
 This can bee seen below where the EIP has been overwritten by four "B" characters ( Hex 0x42424242)
 
-![Selection_171](TRUN.assets/Selection_171.png)
+![Selection_171](/assets/images/vulnserver/TRUN/Selection_171.png)
 
 Next we need to find an op code in the application to jump to our shellcode:
 
@@ -274,11 +270,11 @@ The ESP is a special register in 32 bit architectures. It's purpose is to point 
 
 Running the mona command  gives us the following output:
 
-![image-20200408222129766](TRUN.assets/image-20200408222129766.png)
+![image-20200408222129766](/assets/images/vulnserver/TRUN/image-20200408222129766.png)
 
 From here we can see that mona has found 9 pointers to the JMP ESP function. Double clicking on the first one takes us to the dump where the opcode was found:
 
-![image-20200408222252170](TRUN.assets/image-20200408222252170.png)
+![image-20200408222252170](/assets/images/vulnserver/TRUN/image-20200408222252170.png)
 
 To make use of this address we need to convert the address to little endian format such that the address "\x62\x50\x11\xaf" becomes ""\xaf\x11\x50\x62"
 
@@ -334,7 +330,7 @@ def make_payload():
 
 Running this crashes our process as usual and at this point we can inspect the stack to see if there are any bad bytes:
 
-![image-20200408214017171](TRUN.assets/image-20200408214017171.png)
+![image-20200408214017171](/assets/images/vulnserver/TRUN/image-20200408214017171.png)
 
 Here we can see the stack in immunity If there were bad bytes they would be absent from the stack or be garbled.  
 
@@ -439,7 +435,7 @@ Make sure metasploit is listening on port 4444. This can be done by running the 
 
 Finally on running the exploit we get our shell coming back::
 
-![image-20200408224237712](TRUN.assets/image-20200408224237712.png)
+![image-20200408224237712](/assets/images/vulnserver/TRUN/image-20200408224237712.png)
 
 ### Conclusion
 

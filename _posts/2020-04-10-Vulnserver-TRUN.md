@@ -15,7 +15,7 @@ Keyboard shortcuts:
 
 ### Basic buffer overflow
 
-This section covers a quick refresher on what buffer overflows are and how to take advantage of theme. If you have done OSCP before then you can probably skip this section. 
+This section covers a quick refresher on what buffer overflows are and how to take advantage of them. If you have done OSCP before then you can probably skip this section. 
 
 OWASP defines a buffer overflow as:
 
@@ -23,9 +23,9 @@ OWASP defines a buffer overflow as:
 
 https://owasp.org/www-community/vulnerabilities/Buffer_Overflow
 
-Which sums it up pretty nicely. Essentially we have an arbitrary bucket of memory that we can fill with more data than application expects allowing us to naughty things.
+Which sums it up pretty nicely. Essentially we have an arbitrary bucket of memory that we can fill with more data than the application expects allowing us to do evil things.
 
-In this case we want to overfill the buffer in such a way to gain control over the execution of the program. We can do this by overwriting the EIP register
+In this case we want to overfill the buffer in such a way to gain control over the execution of the program. We can do this by overwriting the EIP register.
 
 The EIP is a register in 32 bit architectures, in 64 bit architectures this is the RIP. It's job is to point the CPU to where the next instruction is. For example if the EIP was set to 0x01020304 the CPU would go to this address and execute the opcode at that address. 
 

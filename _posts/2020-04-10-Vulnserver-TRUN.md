@@ -439,7 +439,7 @@ Finally on running the exploit we get our shell coming back::
 
 ### Conclusion
 
-I hope you find this tutorial somewhat useful. I am aiming to get one of these miniseries done once away with the difficulty ramping up as we progress.
+I hope you find this tutorial somewhat useful. I am aiming to get a post done once a week with the difficulty ramping up as we progress.
 
 Turns out my Python3 is not as bad as I thought it was, just a few stumbling blocks
 

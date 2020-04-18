@@ -259,19 +259,6 @@ Our final nseh variable should look like this:
 nseh = b"\xeb\x06\x90\x90"
 ```
 
-HERE FOR NOW!
-
-```
-typedef struct _EXCEPTION_RECORD {
-  DWORD                    ExceptionCode;
-  DWORD                    ExceptionFlags;
-  struct _EXCEPTION_RECORD *ExceptionRecord;
-  PVOID                    ExceptionAddress;
-  DWORD                    NumberParameters;
-  ULONG_PTR                ExceptionInformation[EXCEPTION_MAXIMUM_PARAMETERS];
-} EXCEPTION_RECORD;
-```
-
 Unfortunately due to the size of the SEH structure we are limited to 28 bytes. This is still way too small for a windows shell ( Happy to be proven wrong!) . As a result we need to jump from our "D" buffer to our "A buffer". Fortunately for us our a buffer is right above our Jump short instruction:
 
 ![image-20200418145006599](/assets/images/vulnserver/GMON/image-20200418145006599.png)

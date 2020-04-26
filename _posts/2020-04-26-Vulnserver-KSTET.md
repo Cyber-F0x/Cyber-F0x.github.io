@@ -12,7 +12,7 @@ We are going to kick fuzzing off the same as the last posts, using the same code
 
 As per the last two posts, boofuzz crashes the application by sending 5014 bytes. However I noticed that way less bytes actually ended up on the stack:
 
-![image-20200423054507135](/assets/images/vulnserver/image-20200423054507135.png)
+![image-20200423054507135](/assets/images/vulnserver/KSTET/image-20200423054507135.png)
 
 I got pretty curious at this point and started messing around with the exact byte length needed to crash the KSTET command. During previous posts, I was not able to get a crash with anything less than 5013 bytes so I thought this was pretty interesting.
 
@@ -30,7 +30,7 @@ def make_payload():
 
 This is enough to smash the EIP as can be seen below:
 
-![image-20200423055222157](/assets/images/vulnserver/image-20200423055222157.png)
+![image-20200423055222157](/assets/images/vulnserver/KSTET/KSTETimage-20200423055222157.png)
 
 ### Exploitation
 
@@ -58,7 +58,7 @@ def make_payload():
 
 On running this we can see the EIP is now smashed with "61726161":
 
-![image-20200423055911312](/assets/images/vulnserver/image-20200423055911312.png)
+![image-20200423055911312](/assets/images/vulnserver/KSTET/image-20200423055911312.png)
 
 Once again we can find this offset in our buffer like so:
 
@@ -87,7 +87,7 @@ def make_payload():
 
 Which as we an see works like a charm:
 
-![image-20200423060610088](/assets/images/vulnserver/image-20200423060610088.png)
+![image-20200423060610088](/assets/images/vulnserver/KSTET/image-20200423060610088.png)
 
 ###  Bad Characters
 
@@ -118,7 +118,7 @@ Similar to the TRUN command, we need to do a JMP ESP.  Hop over to immunity and 
 
 This should give a list of addresses similar to the ones below:
 
-![image-20200423062800355](/assets/images/vulnserver/image-20200423062800355.png)
+![image-20200423062800355](/assets/images/vulnserver/KSTET/image-20200423062800355.png)
 
 At this point pick one of the addresses at random and convert it to little endian. In this case Im going to choose 0x625011df (0xdf115062) and pop it into our payload like so:
 
@@ -302,7 +302,7 @@ if __name__ == "__main__":
 
 On running this we should get a reverse shell!
 
-![image-20200426144344791](/assets/images/vulnserver/image-20200426144344791.png)
+![image-20200426144344791](/assets/images/vulnserver/KSTET/image-20200426144344791.png)
 
 ### Conclusion
 

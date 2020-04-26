@@ -30,7 +30,7 @@ def make_payload():
 
 This is enough to smash the EIP as can be seen below:
 
-![image-20200423055222157](/assets/images/vulnserver/KSTET/KSTETimage-20200423055222157.png)
+![image-20200423055222157](/assets/images/vulnserver/KSTET/image-20200423055222157.png)
 
 ### Exploitation
 
